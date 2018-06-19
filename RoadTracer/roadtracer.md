@@ -3,7 +3,7 @@
 The purpose of this tool is the automatic extraction of road networks from aerial images based on convolutional neural networks (CNN). This has been developed by some people from the computer Science and Artificial Intelligence Laboratory (CSAIL) at MIT and the Qatar Computing Research Institute (QCRI) at HBKU. The idea is to train the algorithm on Google Earth images associated with the corresponding road network from OpenStreetMap :
 > [It] uses an iterative search process guided by a CNN-based decision function to derive the road network graph directly from the output of the CNN.
 
-[Here](https://github.com/mitroadmaps/roadtracer) is the repostitory and [here](https://roadmaps.csail.mit.edu/roadtracer.pdf) is the paper. This sounds great, so let's try it!
+[Here](https://github.com/mitroadmaps/roadtracer) is the repostitory and [here](https://roadmaps.csail.mit.edu/roadtracer/) is a page describing the project (with a link to the submitted paper). This sounds great, so let's try it!
 
 First we clone the repository:
 
@@ -115,4 +115,4 @@ We need to Google Static Maps API key. This can be done very easily [here](https
 > cd dataset/
 dataset > go run 1_sat.go RQ3ecNlwHhxAGhNSyA5L4BWhB7R2DJYAIzes8SG ~/data/imagery
 ```
-Now this is going to take a little while...
+Now this is going to take a little while... More than an hour with my wi-fi connection for the 300 `.png` tiles. 
