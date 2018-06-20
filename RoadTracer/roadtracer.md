@@ -110,9 +110,20 @@ Now that we have the bounding boxes, we need the satellite imagery from Google a
 
 We need to Google Static Maps API key. This can be done very easily [here](https://developers.google.com/maps/documentation/static-maps/). The API key looks like that: `RQ3ecNlwHhxAGhNSyA5L4BWhB7R2DJYAIzes8SG`. Let's fetch the images:
 ```bash
-> mkdir ~/data
-> mkdir ~/data/imagery/
+> mkdir /media/francois/Samsung_T5/data
+> mkdir /media/francois/Samsung_T5/data/imagery/
 > cd dataset/
-dataset > go run 1_sat.go RQ3ecNlwHhxAGhNSyA5L4BWhB7R2DJYAIzes8SG ~/data/imagery
+dataset > go run 1_sat.go RQ3ecNlwHhxAGhNSyA5L4BWhB7R2DJYAIzes8SG /media/francois/Samsung_T5/data/imagery
 ```
-Now this is going to take a little while... More than an hour with my wi-fi connection for the 300 `.png` tiles. 
+Now this is going to take a little while... More than an hour with my wi-fi connection for the 302 `.png` tiles (Each `.png` file is about 25 to 30 MB.).
+
+```bash
+dataset > du -ch -- /media/francois/Samsung_T5/data/imagery/**/*.png | tail -n 1
+8,3G	total
+```
+
+### OpenStreetMap
+
+```bash
+wget https://planet.openstreetmap.org/pbf/planet-latest.osm.pbf -O ~/data/planet.osm.pbf
+```
