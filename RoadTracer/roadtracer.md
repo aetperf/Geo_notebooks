@@ -110,20 +110,31 @@ Now that we have the bounding boxes, we need the satellite imagery from Google a
 
 We need to Google Static Maps API key. This can be done very easily [here](https://developers.google.com/maps/documentation/static-maps/). The API key looks like that: `RQ3ecNlwHhxAGhNSyA5L4BWhB7R2DJYAIzes8SG`. Let's fetch the images:
 ```bash
-> mkdir /media/francois/Samsung_T5/data
-> mkdir /media/francois/Samsung_T5/data/imagery/
+> mkdir /media/francois/Samsung_T5/data/RoadTracer
+> mkdir /media/francois/Samsung_T5/data/RoadTracer/imagery/
 > cd dataset/
 dataset > go run 1_sat.go RQ3ecNlwHhxAGhNSyA5L4BWhB7R2DJYAIzes8SG /media/francois/Samsung_T5/data/imagery
 ```
 Now this is going to take a little while... More than an hour with my wi-fi connection for the 302 `.png` tiles (Each `.png` file is about 25 to 30 MB.).
 
 ```bash
-dataset > du -ch -- /media/francois/Samsung_T5/data/imagery/**/*.png | tail -n 1
+dataset > du -ch -- /media/francois/Samsung_T5/data/RoadTracer/imagery/**/*.png | tail -n 1
 8,3G	total
 ```
 
 ### OpenStreetMap
 
+Now we are going to download the OpenStreetMap planet dataset:
 ```bash
-wget https://planet.openstreetmap.org/pbf/planet-latest.osm.pbf -O ~/data/planet.osm.pbf
+dataset > wget https://planet.openstreetmap.org/pbf/planet-latest.osm.pbf -O /media/francois/Samsung_T5/data/RoadTracer/planet.osm.pbf
 ```
+
+Again, this is going to take some time since we are dealing with 40.37 GB of data (about one hour and a half on my computer).  
+
+From this planet dataset, we extract the road network graphs corresponding to the bounding boxes:
+
+```bash
+dataset > mkdir /media/francois/Samsung_T5/data/RoadTracer/rawgraphs/
+dateset > go run 2_mkgraphs.go /media/francois/Samsung_T5/data/RoadTracer/planet.osm.pbf /media/francois/Samsung_T5/data/RoadTracer/rawgraphs/
+```
+Unfortunately, you need more than 16 GB of RAM here.
